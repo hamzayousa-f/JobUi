@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobapp/util/job_card.dart';
+import 'package:jobapp/util/recent_job.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +14,12 @@ class _HomePageState extends State<HomePage> {
     ['Flutter', 'Flutter Developer', 'lib/icons/flag.png', 99],
     ['Apple', 'UI Designer', 'lib/icons/apple-logo.png', 80],
     ['Android', 'Java Developer', 'lib/icons/android.png', 99],
+  ];
+
+  final List recentJobs = [
+    ['Nike', 'Web Designer', 'lib/icons/flag.png', 89],
+    ['Cream', 'UI Designer', 'lib/icons/apple-logo.png', 55],
+    ['Microsoft', 'Java Developer', 'lib/icons/android.png', 99],
   ];
 
   @override
@@ -150,10 +157,19 @@ class _HomePageState extends State<HomePage> {
             height: 25,
           ),
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return RecentJobCard();
-              },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: ListView.builder(
+                itemCount: recentJobs.length,
+                itemBuilder: (context, index) {
+                  return RecentJobCard(
+                    companyName: recentJobs[index][0],
+                    jobTitle: recentJobs[index][1],
+                    logoImagePath: recentJobs[index][2],
+                    hourlyRate: recentJobs[index][3],
+                  );
+                },
+              ),
             ),
           ),
         ],
